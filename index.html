@@ -47,11 +47,6 @@
     <section class="section" id="popular">
       <h2>Популярные товары</h2>
 
-      <p class="success-message" id="success-message" role="status" hidden>
-        <strong>Форма успешно отправлена!</strong>
-        Это учебный пример: данные не передаются на сервер и не сохраняются.
-      </p>
-
       <article class="product-card">
         <h3>Проводная мышь</h3>
         <p>Компактная USB-мышь для работы и учёбы за компьютером.</p>
@@ -102,40 +97,60 @@
 
   <dialog class="order-dialog" id="order-dialog" aria-labelledby="order-dialog-title">
     <h2 id="order-dialog-title">Оформление заявки</h2>
-    <p>Выбранный товар: <strong id="selected-product-name"></strong></p>
-    <p class="form-note">Учебная форма: данные не отправляются на сервер и не сохраняются.</p>
 
     <form class="order-form" id="order-form" action="#" method="post" novalidate>
       <input id="selected-product" name="selected-product" type="hidden">
 
       <div class="form-field">
-        <label for="order-name">Имя (обязательно)</label>
-        <input id="order-name" name="name" type="text" placeholder="Введите ваше имя"
-          minlength="2" autocomplete="given-name" required autofocus>
+        <label for="order-name">Имя</label>
+        <input
+          id="order-name"
+          name="name"
+          type="text"
+          placeholder="Введите ваше имя"
+          minlength="2"
+          autocomplete="given-name"
+          required
+        >
       </div>
 
       <div class="form-field">
-        <label for="order-email">E-mail (обязательно)</label>
-        <input id="order-email" name="email" type="email" placeholder="example@mail.ru"
-          autocomplete="email" required>
+        <label for="order-email">E-mail</label>
+        <input
+          id="order-email"
+          name="email"
+          type="email"
+          placeholder="example@mail.ru"
+          autocomplete="email"
+          required
+        >
       </div>
 
       <div class="form-field">
-        <label for="order-phone">Телефон (обязательно)</label>
-        <input id="order-phone" name="phone" type="tel" inputmode="tel"
-          placeholder="+7 (900) 000-00-00" autocomplete="tel"
+        <label for="order-phone">Телефон</label>
+        <input
+          id="order-phone"
+          name="phone"
+          type="tel"
+          inputmode="tel"
+          placeholder="+7 (900) 000-00-00"
           pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$"
-          aria-describedby="order-phone-hint" required>
-        <small id="order-phone-hint">Формат: +7 (900) 000-00-00</small>
+          required
+        >
+        <small>Формат: +7 (900) 000-00-00</small>
       </div>
 
       <div class="form-field">
         <label for="order-date">Дата связи</label>
-        <input id="order-date" name="date" type="date">
+        <input
+          id="order-date"
+          name="date"
+          type="date"
+        >
       </div>
 
       <div class="form-field">
-        <label for="order-topic">Тема заявки (обязательно)</label>
+        <label for="order-topic">Тема заявки</label>
         <select id="order-topic" name="topic" required>
           <option value="">Выберите тему</option>
           <option value="product">Заказ товара</option>
@@ -146,22 +161,35 @@
 
       <div class="form-field">
         <label for="order-comment">Комментарий</label>
-        <textarea id="order-comment" name="comment" rows="4"
-          placeholder="Укажите дополнительную информацию"></textarea>
+        <textarea
+          id="order-comment"
+          name="comment"
+          rows="4"
+          placeholder="Укажите дополнительную информацию"
+        ></textarea>
       </div>
 
       <div class="form-field form-field--checkbox">
-        <label for="order-agreement">
-          <input id="order-agreement" name="agreement" type="checkbox" required>
-          Я согласен на обработку данных (обязательно)
+        <label>
+          <input
+            id="order-agreement"
+            name="agreement"
+            type="checkbox"
+            required
+          >
+          Я согласен на обработку данных
         </label>
       </div>
 
       <div class="form-actions">
-        <button class="button button-secondary" type="button" id="close-order-dialog">Закрыть</button>
-        <button class="button" type="submit">Отправить заявку</button>
+        <button type="button" id="close-order-dialog">Закрыть</button>
+        <button type="submit">Отправить заявку</button>
       </div>
     </form>
   </dialog>
+
+  <p class="success-message" id="success-message" hidden>
+    Форма успешно отправлена!
+  </p>
 </body>
 </html>
