@@ -1,27 +1,139 @@
+/* Ширина элемента включает содержимое, внутренние отступы и рамку. */
+* {
+  box-sizing: border-box;
+}
+
+/* Минимальный сброс отступов и наследуемые стили текста. */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   line-height: 1.5;
+  color: #222222;
+  background-color: #ffffff;
 }
 
+/* Отступы отделяют содержимое от краёв окна браузера. */
 header,
 main,
 footer {
   padding: 20px;
 }
 
-header {
-  background-color: #f2f2f2;
-}
-
+header,
 footer {
   background-color: #f2f2f2;
 }
 
-section {
-  margin-bottom: 24px;
+/* Общая ширина и центрирование содержимого шапки и подвала. */
+.site-header,
+.site-footer {
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
-section h2 {
+.site-logo {
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #222222;
+}
+
+/* Меню пока остаётся обычным вертикальным списком без маркеров. */
+.site-nav__list {
+  padding: 0;
+  margin: 16px 0 0;
+  list-style: none;
+}
+
+.site-nav__list li {
+  margin-bottom: 8px;
+}
+
+.site-nav__list a {
+  color: #0057b8;
+  text-decoration: none;
+}
+
+.site-nav__list a:hover {
+  text-decoration: underline;
+}
+
+/* Видимый фокус помогает перемещаться по ссылкам клавишей Tab. */
+a:focus-visible {
+  outline: 3px solid #0057b8;
+  outline-offset: 4px;
+}
+
+/* Первый экран выделяется светлым фоном и внутренними отступами. */
+.hero {
+  max-width: 1100px;
+  margin: 0 auto 32px;
+  padding: 32px 20px;
+  background-color: #eef5ff;
+  border-radius: 12px;
+}
+
+.hero h1 {
   margin-top: 0;
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+.section {
+  max-width: 1100px;
+  margin: 0 auto 32px;
+}
+
+.section h2,
+.aside-info h2 {
+  margin-top: 0;
+}
+
+.advantages-list {
+  padding-left: 24px;
+}
+
+.advantages-list li {
+  margin-bottom: 8px;
+}
+
+/* Карточки идут друг под другом. Сетка будет на следующих занятиях. */
+.product-card {
+  margin-bottom: 16px;
+  padding: 16px;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.product-card h3 {
+  margin-top: 0;
+}
+
+.product-price {
+  margin-bottom: 0;
+  font-weight: bold;
+}
+
+/* Это ссылка на раздел товаров, оформленная как кнопка. */
+.button {
+  display: inline-block;
+  padding: 10px 16px;
+  color: #ffffff;
+  background-color: #0057b8;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.button:hover {
+  background-color: #003f86;
+}
+
+/* Вспомогательная информация выделена фоном и левой рамкой. */
+.aside-info {
+  max-width: 1100px;
+  margin: 0 auto 32px;
+  padding: 16px;
+  border-left: 4px solid #0057b8;
+  background-color: #f7f7f7;
 }
