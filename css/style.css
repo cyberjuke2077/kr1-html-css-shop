@@ -235,16 +235,11 @@ textarea:focus-visible {
   right: var(--space-md);
   padding: var(--space-xs) var(--space-sm);
   color: var(--color-white);
-  background-color: var(--color-danger);
+  background-color: var(--color-muted);
   border-radius: var(--radius-sm);
   font-size: 14px;
   font-weight: bold;
   line-height: 1;
-}
-
-/* Модификатор элемента: серый бейдж для товара, которого нет в наличии. */
-.product-card__badge--muted {
-  background-color: var(--color-muted);
 }
 
 /* Модификатор блока: карточка товара без наличия выделена серым фоном. */
