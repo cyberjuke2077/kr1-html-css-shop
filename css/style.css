@@ -42,6 +42,14 @@
   box-sizing: border-box;
 }
 
+/*
+  Место под полосу прокрутки зарезервировано всегда, поэтому страница
+  не сдвигается, когда модальное окно отключает прокрутку.
+*/
+html {
+  scrollbar-gutter: stable;
+}
+
 /* Минимальный сброс отступов и наследуемые стили текста. */
 body {
   margin: 0;
@@ -124,6 +132,12 @@ textarea:focus-visible {
    4. Компоненты страницы
    =============================== */
 
+/*
+  Классы названы по БЭМ: блок (.product-card),
+  элемент блока (.product-card__title), модификатор (.product-card--out-of-stock).
+  Стили задаются через классы, а не через вложенные теги.
+*/
+
 /* Общая ширина и центрирование содержимого шапки и подвала. */
 .site-header,
 .site-footer {
@@ -145,16 +159,16 @@ textarea:focus-visible {
   list-style: none;
 }
 
-.site-nav__list li {
+.site-nav__item {
   margin-bottom: var(--space-sm);
 }
 
 /* Цвет ссылок меню берётся из общего правила для a. */
-.site-nav__list a {
+.site-nav__link {
   text-decoration: none;
 }
 
-.site-nav__list a:hover {
+.site-nav__link:hover {
   text-decoration: underline;
 }
 
@@ -167,7 +181,7 @@ textarea:focus-visible {
   border-radius: var(--radius-lg);
 }
 
-.hero h1 {
+.hero__title {
   margin-top: 0;
   font-size: 32px;
   line-height: 1.2;
@@ -178,8 +192,8 @@ textarea:focus-visible {
   margin: 0 auto var(--space-xl);
 }
 
-.section h2,
-.aside-info h2 {
+.section__title,
+.aside-info__title {
   margin-top: 0;
 }
 
@@ -187,12 +201,17 @@ textarea:focus-visible {
   padding-left: var(--space-lg);
 }
 
-.advantages-list li {
+.advantages-list__item {
   margin-bottom: var(--space-sm);
 }
 
-/* Карточки идут друг под другом. Сетка будет на следующих занятиях. */
+/*
+  Карточки идут друг под другом. Сетка будет на следующих занятиях.
+  position: relative оставляет карточку на месте, но делает её
+  точкой отсчёта для бейджа с position: absolute.
+*/
 .product-card {
+  position: relative;
   margin-bottom: var(--space-md);
   padding: var(--space-md);
   border: 1px solid var(--color-border);
@@ -204,11 +223,35 @@ textarea:focus-visible {
   border-color: var(--color-primary);
 }
 
-.product-card h3 {
+/*
+  Бейдж убран из обычного потока и посажен на верхнюю рамку карточки справа.
+  top и right отсчитываются от карточки, потому что у неё position: relative.
+  Отрицательный top выводит бейдж за край карточки, поэтому он не
+  наезжает на заголовок даже на узком экране.
+*/
+.product-card__badge {
+  position: absolute;
+  top: calc(var(--space-sm) * -1);
+  right: var(--space-md);
+  padding: var(--space-xs) var(--space-sm);
+  color: var(--color-white);
+  background-color: var(--color-muted);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+/* Модификатор блока: карточка товара без наличия выделена серым фоном. */
+.product-card--out-of-stock {
+  background-color: var(--color-surface);
+}
+
+.product-card__title {
   margin-top: 0;
 }
 
-.product-price {
+.product-card__price {
   margin-bottom: 0;
   font-weight: bold;
 }
@@ -224,6 +267,18 @@ textarea:focus-visible {
   padding: var(--space-md);
   border-left: 4px solid var(--color-primary);
   background-color: var(--color-surface);
+}
+
+/*
+  Кнопка «Наверх» закреплена относительно окна браузера:
+  при прокрутке она остаётся в правом нижнем углу экрана.
+  z-index поднимает её над карточками, у которых есть position.
+*/
+.to-top {
+  position: fixed;
+  right: var(--space-lg);
+  bottom: var(--space-lg);
+  z-index: 10;
 }
 
 /* ===============================
@@ -246,19 +301,25 @@ textarea:focus-visible {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+/*
+  Пока модальное окно открыто (у dialog есть атрибут open),
+  страница под ним не прокручивается.
+*/
+body:has(.order-dialog[open]) {
+  overflow: hidden;
+}
+
 /* Каждый блок формы получает нижний отступ. */
 .form-field {
   margin-bottom: var(--space-md);
 }
 
-.form-field label {
+.form-field__label {
   display: block;
   margin-bottom: var(--space-xs);
 }
 
-.form-field input,
-.form-field select,
-.form-field textarea {
+.form-field__control {
   width: 100%;
   padding: 10px 12px;
   border: 1px solid var(--color-border);
@@ -266,28 +327,19 @@ textarea:focus-visible {
   font: inherit;
 }
 
-/* Checkbox не должен занимать всю ширину. */
-.form-field input[type="checkbox"] {
-  width: auto;
-}
-
 /* Подсказка под полем телефона. */
-.form-field small {
+.form-field__hint {
   display: block;
   margin-top: var(--space-xs);
   color: var(--color-muted);
 }
 
-.form-field input:hover,
-.form-field select:hover,
-.form-field textarea:hover {
+.form-field__control:hover {
   border-color: var(--color-primary);
 }
 
 /* Поле в фокусе (после щелчка мышью или клавиши Tab) выделяется фоном. */
-.form-field input:focus,
-.form-field select:focus,
-.form-field textarea:focus {
+.form-field__control:focus {
   background-color: var(--color-surface-accent);
 }
 
@@ -296,9 +348,7 @@ textarea:focus-visible {
   Селектор такой же силы, как у :hover, и стоит после него,
   поэтому красная рамка не перебивается обычной и синей.
 */
-.form-field input[aria-invalid="true"],
-.form-field select[aria-invalid="true"],
-.form-field textarea[aria-invalid="true"] {
+.form-field__control[aria-invalid="true"] {
   border-color: var(--color-danger);
 }
 

@@ -8,16 +8,16 @@
   <script src="js/main.js" defer></script>
 </head>
 <body>
-  <header>
+  <header id="top">
     <div class="site-header">
       <a class="site-logo" href="index.html">ShopProject</a>
 
       <nav class="site-nav" aria-label="Основная навигация">
         <ul class="site-nav__list">
-          <li><a href="index.html" aria-current="page">Главная</a></li>
-          <li><a href="#popular">Популярные товары</a></li>
-          <li><a href="#advantages">Преимущества</a></li>
-          <li><a href="#contacts">Контакты</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="index.html" aria-current="page">Главная</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="#popular">Популярные товары</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="#advantages">Преимущества</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="#contacts">Контакты</a></li>
         </ul>
       </nav>
     </div>
@@ -25,8 +25,8 @@
 
   <main>
     <section class="hero">
-      <h1>Учебный интернет-магазин</h1>
-      <p>
+      <h1 class="hero__title">Учебный интернет-магазин</h1>
+      <p class="hero__text">
         Это стартовая страница учебного frontend-проекта.
         В дальнейшем здесь будет разработан многостраничный сайт
         интернет-магазина или каталога услуг.
@@ -35,49 +35,50 @@
     </section>
 
     <section class="section" id="advantages">
-      <h2>Преимущества проекта</h2>
+      <h2 class="section__title">Преимущества проекта</h2>
       <ul class="advantages-list">
-        <li>Понятная HTML-структура.</li>
-        <li>Семантические блоки страницы.</li>
-        <li>Подключение внешнего CSS-файла.</li>
-        <li>Подготовка к разработке многостраничного сайта.</li>
+        <li class="advantages-list__item">Понятная HTML-структура.</li>
+        <li class="advantages-list__item">Семантические блоки страницы.</li>
+        <li class="advantages-list__item">Подключение внешнего CSS-файла.</li>
+        <li class="advantages-list__item">Подготовка к разработке многостраничного сайта.</li>
       </ul>
     </section>
 
     <section class="section" id="popular">
-      <h2>Популярные товары</h2>
+      <h2 class="section__title">Популярные товары</h2>
 
       <article class="product-card">
-        <h3>Проводная мышь</h3>
-        <p>Компактная USB-мышь для работы и учёбы за компьютером.</p>
-        <p class="product-price">Цена: 1 000 руб.</p>
+        <h3 class="product-card__title">Проводная мышь</h3>
+        <p class="product-card__text">Компактная USB-мышь для работы и учёбы за компьютером.</p>
+        <p class="product-card__price">Цена: 1 000 руб.</p>
         <button class="button product-card__button" type="button" data-product="Проводная мышь">
           Заказать
         </button>
       </article>
 
       <article class="product-card">
-        <h3>Клавиатура</h3>
-        <p>Полноразмерная USB-клавиатура с цифровым блоком для набора текста.</p>
-        <p class="product-price">Цена: 1 500 руб.</p>
+        <h3 class="product-card__title">Клавиатура</h3>
+        <p class="product-card__text">Полноразмерная USB-клавиатура с цифровым блоком для набора текста.</p>
+        <p class="product-card__price">Цена: 1 500 руб.</p>
         <button class="button product-card__button" type="button" data-product="Клавиатура">
           Заказать
         </button>
       </article>
 
       <article class="product-card">
-        <h3>Наушники с микрофоном</h3>
-        <p>Проводная гарнитура для онлайн-занятий, общения и прослушивания музыки.</p>
-        <p class="product-price">Цена: 2 000 руб.</p>
+        <h3 class="product-card__title">Наушники с микрофоном</h3>
+        <p class="product-card__text">Проводная гарнитура для онлайн-занятий, общения и прослушивания музыки.</p>
+        <p class="product-card__price">Цена: 2 000 руб.</p>
         <button class="button product-card__button" type="button" data-product="Наушники с микрофоном">
           Заказать
         </button>
       </article>
 
-      <article class="product-card">
-        <h3>Веб-камера</h3>
-        <p>Full HD веб-камера для видеозвонков и онлайн-занятий.</p>
-        <p class="product-price">Цена: 2 500 руб.</p>
+      <article class="product-card product-card--out-of-stock">
+        <span class="product-card__badge">Нет в наличии</span>
+        <h3 class="product-card__title">Веб-камера</h3>
+        <p class="product-card__text">Full HD веб-камера для видеозвонков и онлайн-занятий.</p>
+        <p class="product-card__price">Цена: 2 500 руб.</p>
         <button class="button product-card__button" type="button" disabled>
           Нет в наличии
         </button>
@@ -85,11 +86,11 @@
     </section>
 
     <aside class="aside-info">
-      <h2>Информация для студентов</h2>
-      <p>
+      <h2 class="aside-info__title">Информация для студентов</h2>
+      <p class="aside-info__text">
         Товары и цены приведены для учебного примера. Форма заявки работает
         без отправки данных на сервер. На следующих практических занятиях
-        появятся дополнительные страницы, Flex/Grid, БЭМ-структура
+        появятся дополнительные страницы, Flex/Grid
         и адаптивная версия сайта.
       </p>
     </aside>
@@ -104,6 +105,8 @@
     </div>
   </footer>
 
+  <a class="button to-top" href="#top">Наверх</a>
+
   <dialog class="order-dialog" id="order-dialog" aria-labelledby="order-dialog-title">
     <h2 id="order-dialog-title">Оформление заявки</h2>
 
@@ -111,8 +114,9 @@
       <input id="selected-product" name="selected-product" type="hidden">
 
       <div class="form-field">
-        <label for="order-name">Имя</label>
+        <label class="form-field__label" for="order-name">Имя</label>
         <input
+          class="form-field__control"
           id="order-name"
           name="name"
           type="text"
@@ -124,8 +128,9 @@
       </div>
 
       <div class="form-field">
-        <label for="order-email">E-mail</label>
+        <label class="form-field__label" for="order-email">E-mail</label>
         <input
+          class="form-field__control"
           id="order-email"
           name="email"
           type="email"
@@ -136,8 +141,9 @@
       </div>
 
       <div class="form-field">
-        <label for="order-phone">Телефон</label>
+        <label class="form-field__label" for="order-phone">Телефон</label>
         <input
+          class="form-field__control"
           id="order-phone"
           name="phone"
           type="tel"
@@ -146,12 +152,13 @@
           pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$"
           required
         >
-        <small>Формат: +7 (900) 000-00-00</small>
+        <small class="form-field__hint">Формат: +7 (900) 000-00-00</small>
       </div>
 
       <div class="form-field">
-        <label for="order-date">Дата связи</label>
+        <label class="form-field__label" for="order-date">Дата связи</label>
         <input
+          class="form-field__control"
           id="order-date"
           name="date"
           type="date"
@@ -159,8 +166,8 @@
       </div>
 
       <div class="form-field">
-        <label for="order-topic">Тема заявки</label>
-        <select id="order-topic" name="topic" required>
+        <label class="form-field__label" for="order-topic">Тема заявки</label>
+        <select class="form-field__control" id="order-topic" name="topic" required>
           <option value="">Выберите тему</option>
           <option value="product">Заказ товара</option>
           <option value="consultation">Консультация</option>
@@ -169,8 +176,9 @@
       </div>
 
       <div class="form-field">
-        <label for="order-comment">Комментарий</label>
+        <label class="form-field__label" for="order-comment">Комментарий</label>
         <textarea
+          class="form-field__control"
           id="order-comment"
           name="comment"
           rows="4"
@@ -179,8 +187,9 @@
       </div>
 
       <div class="form-field form-field--checkbox">
-        <label>
+        <label class="form-field__label">
           <input
+            class="form-field__checkbox"
             id="order-agreement"
             name="agreement"
             type="checkbox"
