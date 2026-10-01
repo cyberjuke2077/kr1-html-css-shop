@@ -8,7 +8,7 @@
   <script src="js/main.js" defer></script>
 </head>
 <body>
-  <header>
+  <header id="top">
     <div class="site-header">
       <a class="site-logo" href="index.html">ShopProject</a>
 
@@ -48,6 +48,8 @@
       <h2 class="section__title">Популярные товары</h2>
 
       <article class="product-card">
+        <span class="product-card__badge">Хит</span>
+        <img class="product-card__img" src="images/mouse.svg" alt="Проводная мышь" width="160" height="120">
         <h3 class="product-card__title">Проводная мышь</h3>
         <p class="product-card__text">Компактная USB-мышь для работы и учёбы за компьютером.</p>
         <p class="product-card__price">Цена: 1 000 руб.</p>
@@ -57,6 +59,7 @@
       </article>
 
       <article class="product-card">
+        <img class="product-card__img" src="images/keyboard.svg" alt="Клавиатура" width="160" height="120">
         <h3 class="product-card__title">Клавиатура</h3>
         <p class="product-card__text">Полноразмерная USB-клавиатура с цифровым блоком для набора текста.</p>
         <p class="product-card__price">Цена: 1 500 руб.</p>
@@ -66,6 +69,7 @@
       </article>
 
       <article class="product-card">
+        <img class="product-card__img" src="images/headset.svg" alt="Наушники с микрофоном" width="160" height="120">
         <h3 class="product-card__title">Наушники с микрофоном</h3>
         <p class="product-card__text">Проводная гарнитура для онлайн-занятий, общения и прослушивания музыки.</p>
         <p class="product-card__price">Цена: 2 000 руб.</p>
@@ -74,7 +78,9 @@
         </button>
       </article>
 
-      <article class="product-card">
+      <article class="product-card product-card--out-of-stock">
+        <span class="product-card__badge product-card__badge--muted">Нет в наличии</span>
+        <img class="product-card__img" src="images/webcam.svg" alt="Веб-камера" width="160" height="120">
         <h3 class="product-card__title">Веб-камера</h3>
         <p class="product-card__text">Full HD веб-камера для видеозвонков и онлайн-занятий.</p>
         <p class="product-card__price">Цена: 2 500 руб.</p>
@@ -103,6 +109,8 @@
       <p>Группа: ЭФБО-11-25</p>
     </div>
   </footer>
+
+  <a class="button to-top" href="#top">Наверх</a>
 
   <dialog class="order-dialog" id="order-dialog" aria-labelledby="order-dialog-title">
     <h2 id="order-dialog-title">Оформление заявки</h2>
