@@ -216,22 +216,22 @@ textarea:focus-visible {
 }
 
 /*
-  Бейдж убран из обычного потока и наложен на левый верхний угол картинки.
-  top и left отсчитываются от карточки, потому что у неё position: relative.
-  z-index нужен для бледной картинки: из-за opacity она иначе
-  рисуется поверх бейджа, так как стоит в разметке после него.
+  Бейдж убран из обычного потока и посажен на верхнюю рамку карточки справа.
+  top и right отсчитываются от карточки, потому что у неё position: relative.
+  Отрицательный top выводит бейдж за край карточки, поэтому он не
+  наезжает на заголовок даже на узком экране.
 */
 .product-card__badge {
   position: absolute;
-  top: var(--space-lg);
-  left: var(--space-lg);
-  z-index: 1;
+  top: calc(var(--space-sm) * -1);
+  right: var(--space-md);
   padding: var(--space-xs) var(--space-sm);
   color: var(--color-white);
   background-color: var(--color-danger);
   border-radius: var(--radius-sm);
   font-size: 14px;
   font-weight: bold;
+  line-height: 1;
 }
 
 /* Модификатор элемента: серый бейдж для товара, которого нет в наличии. */
@@ -239,15 +239,9 @@ textarea:focus-visible {
   background-color: var(--color-muted);
 }
 
-.product-card__img {
-  display: block;
-  margin-bottom: var(--space-md);
-  border-radius: var(--radius-md);
-}
-
-/* Модификатор блока: у товара без наличия картинка бледнее. */
-.product-card--out-of-stock .product-card__img {
-  opacity: 0.5;
+/* Модификатор блока: карточка товара без наличия выделена серым фоном. */
+.product-card--out-of-stock {
+  background-color: var(--color-surface);
 }
 
 .product-card__title {
