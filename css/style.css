@@ -124,6 +124,12 @@ textarea:focus-visible {
    4. Компоненты страницы
    =============================== */
 
+/*
+  Классы названы по БЭМ: блок (.product-card),
+  элемент блока (.product-card__title), модификатор (.product-card--out-of-stock).
+  Стили задаются через классы, а не через вложенные теги.
+*/
+
 /* Общая ширина и центрирование содержимого шапки и подвала. */
 .site-header,
 .site-footer {
@@ -145,16 +151,16 @@ textarea:focus-visible {
   list-style: none;
 }
 
-.site-nav__list li {
+.site-nav__item {
   margin-bottom: var(--space-sm);
 }
 
 /* Цвет ссылок меню берётся из общего правила для a. */
-.site-nav__list a {
+.site-nav__link {
   text-decoration: none;
 }
 
-.site-nav__list a:hover {
+.site-nav__link:hover {
   text-decoration: underline;
 }
 
@@ -167,7 +173,7 @@ textarea:focus-visible {
   border-radius: var(--radius-lg);
 }
 
-.hero h1 {
+.hero__title {
   margin-top: 0;
   font-size: 32px;
   line-height: 1.2;
@@ -178,8 +184,8 @@ textarea:focus-visible {
   margin: 0 auto var(--space-xl);
 }
 
-.section h2,
-.aside-info h2 {
+.section__title,
+.aside-info__title {
   margin-top: 0;
 }
 
@@ -187,7 +193,7 @@ textarea:focus-visible {
   padding-left: var(--space-lg);
 }
 
-.advantages-list li {
+.advantages-list__item {
   margin-bottom: var(--space-sm);
 }
 
@@ -204,11 +210,11 @@ textarea:focus-visible {
   border-color: var(--color-primary);
 }
 
-.product-card h3 {
+.product-card__title {
   margin-top: 0;
 }
 
-.product-price {
+.product-card__price {
   margin-bottom: 0;
   font-weight: bold;
 }
@@ -251,14 +257,12 @@ textarea:focus-visible {
   margin-bottom: var(--space-md);
 }
 
-.form-field label {
+.form-field__label {
   display: block;
   margin-bottom: var(--space-xs);
 }
 
-.form-field input,
-.form-field select,
-.form-field textarea {
+.form-field__control {
   width: 100%;
   padding: 10px 12px;
   border: 1px solid var(--color-border);
@@ -266,28 +270,19 @@ textarea:focus-visible {
   font: inherit;
 }
 
-/* Checkbox не должен занимать всю ширину. */
-.form-field input[type="checkbox"] {
-  width: auto;
-}
-
 /* Подсказка под полем телефона. */
-.form-field small {
+.form-field__hint {
   display: block;
   margin-top: var(--space-xs);
   color: var(--color-muted);
 }
 
-.form-field input:hover,
-.form-field select:hover,
-.form-field textarea:hover {
+.form-field__control:hover {
   border-color: var(--color-primary);
 }
 
 /* Поле в фокусе (после щелчка мышью или клавиши Tab) выделяется фоном. */
-.form-field input:focus,
-.form-field select:focus,
-.form-field textarea:focus {
+.form-field__control:focus {
   background-color: var(--color-surface-accent);
 }
 
@@ -296,9 +291,7 @@ textarea:focus-visible {
   Селектор такой же силы, как у :hover, и стоит после него,
   поэтому красная рамка не перебивается обычной и синей.
 */
-.form-field input[aria-invalid="true"],
-.form-field select[aria-invalid="true"],
-.form-field textarea[aria-invalid="true"] {
+.form-field__control[aria-invalid="true"] {
   border-color: var(--color-danger);
 }
 
