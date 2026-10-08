@@ -152,15 +152,22 @@ textarea:focus-visible {
   color: var(--color-text);
 }
 
-/* Меню пока остаётся обычным вертикальным списком без маркеров. */
-.site-nav__list {
-  padding: 0;
-  margin: var(--space-md) 0 0;
-  list-style: none;
+/* Flexbox размещает логотип и меню в строку с переносом при нехватке места. */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-md);
 }
 
-.site-nav__item {
-  margin-bottom: var(--space-sm);
+.site-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-md);
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 /* Цвет ссылок меню берётся из общего правила для a. */
@@ -205,14 +212,19 @@ textarea:focus-visible {
   margin-bottom: var(--space-sm);
 }
 
+/* CSS Grid распределяет карточки по колонкам с учётом ширины контейнера. */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: var(--space-lg);
+}
+
 /*
-  Карточки идут друг под другом. Сетка будет на следующих занятиях.
   position: relative оставляет карточку на месте, но делает её
   точкой отсчёта для бейджа с position: absolute.
 */
 .product-card {
   position: relative;
-  margin-bottom: var(--space-md);
   padding: var(--space-md);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
