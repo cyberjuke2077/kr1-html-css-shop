@@ -170,19 +170,25 @@ textarea:focus-visible {
 .site-nav__list {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-sm) var(--space-md);
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-md);
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
-/* Цвет ссылок меню берётся из общего правила для a. */
 .site-nav__link {
+  display: inline-block;
+  padding: var(--space-sm) var(--space-md);
+  color: var(--color-primary);
   text-decoration: none;
+  border-radius: var(--radius-sm);
 }
 
 .site-nav__link:hover {
-  text-decoration: underline;
+  color: var(--color-white);
+  background-color: var(--color-primary);
 }
 
 .breadcrumbs {
@@ -235,10 +241,61 @@ textarea:focus-visible {
 }
 
 /* CSS Grid распределяет карточки по колонкам с учётом ширины контейнера. */
-.product-grid {
+.products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
   gap: var(--space-lg);
+}
+
+/* Именованные области размещают фильтры слева, товары справа. */
+.catalog-layout {
+  max-width: var(--container-width);
+  margin: 0 auto var(--space-xl);
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  grid-template-areas: "filters products";
+  gap: var(--space-lg);
+}
+
+.catalog-filters {
+  grid-area: filters;
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+.catalog-products {
+  grid-area: products;
+}
+
+.filters-form {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.filters-form__group {
+  margin: 0;
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.filters-form__legend {
+  font-weight: 700;
+}
+
+.filters-form__label {
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+.filters-form__input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font: inherit;
 }
 
 /*
@@ -249,6 +306,7 @@ textarea:focus-visible {
   position: relative;
   display: flex;
   flex-direction: column;
+  gap: var(--space-sm);
   padding: var(--space-md);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -283,8 +341,9 @@ textarea:focus-visible {
   background-color: var(--color-surface);
 }
 
-.product-card__title {
-  margin-top: 0;
+.product-card__title,
+.product-card__text {
+  margin: 0;
 }
 
 .product-card__price {
@@ -295,7 +354,6 @@ textarea:focus-visible {
 
 .product-card__button {
   align-self: flex-start;
-  margin-top: var(--space-md);
 }
 
 /* Вспомогательная информация выделена фоном и левой рамкой. */

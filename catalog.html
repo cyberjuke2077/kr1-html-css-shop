@@ -35,35 +35,67 @@
       <h1>Каталог товаров</h1>
       <p>
         На этой странице представлен учебный каталог товаров.
-        В дальнейшем здесь будут добавлены фильтры, сортировка
-        и более подробные карточки.
+        Слева размещена учебная форма фильтров, справа - список товаров.
       </p>
     </section>
 
-    <section class="section">
-      <h2 class="section__title">Список товаров</h2>
-      <div class="product-grid">
-        <article class="product-card">
-          <h3 class="product-card__title">Проводная мышь</h3>
-          <p class="product-card__text">Компактная USB-мышь для работы и учёбы за компьютером.</p>
-          <p class="product-card__price">Цена: 1 000 руб.</p>
-          <a class="button product-card__button" href="index.html#popular">Подробнее</a>
-        </article>
+    <section class="catalog-layout" aria-label="Каталог с фильтрами">
+      <aside class="catalog-filters">
+        <h2 class="section__title">Фильтры</h2>
+        <form class="filters-form" action="#" method="get">
+          <fieldset class="filters-form__group">
+            <legend class="filters-form__legend">Категория</legend>
+            <label class="filters-form__label">
+              <input type="checkbox" name="category" value="all">
+              Все товары
+            </label>
+            <label class="filters-form__label">
+              <input type="checkbox" name="category" value="popular">
+              Популярные
+            </label>
+            <label class="filters-form__label">
+              <input type="checkbox" name="category" value="new">
+              Новинки
+            </label>
+          </fieldset>
 
-        <article class="product-card">
-          <h3 class="product-card__title">Клавиатура</h3>
-          <p class="product-card__text">Полноразмерная USB-клавиатура с цифровым блоком для набора текста.</p>
-          <p class="product-card__price">Цена: 1 500 руб.</p>
-          <a class="button product-card__button" href="index.html#popular">Подробнее</a>
-        </article>
+          <fieldset class="filters-form__group">
+            <legend class="filters-form__legend">Цена</legend>
+            <label class="filters-form__label" for="price-from">От</label>
+            <input class="filters-form__input" id="price-from" name="price-from" type="number" min="0" placeholder="0">
+            <label class="filters-form__label" for="price-to">До</label>
+            <input class="filters-form__input" id="price-to" name="price-to" type="number" min="0" placeholder="5000">
+          </fieldset>
 
-        <article class="product-card">
-          <h3 class="product-card__title">Наушники с микрофоном</h3>
-          <p class="product-card__text">Проводная гарнитура для онлайн-занятий, общения и прослушивания музыки.</p>
-          <p class="product-card__price">Цена: 2 000 руб.</p>
-          <a class="button product-card__button" href="index.html#popular">Подробнее</a>
-        </article>
-      </div>
+          <button class="button" type="submit">Применить</button>
+        </form>
+      </aside>
+
+      <section class="catalog-products">
+        <h2 class="section__title">Список товаров</h2>
+        <div class="products-grid">
+          <article class="product-card">
+            <h3 class="product-card__title">Проводная мышь</h3>
+            <p class="product-card__text">Компактная USB-мышь для работы и учёбы за компьютером.</p>
+            <p class="product-card__price">Цена: 1 000 руб.</p>
+            <a class="button product-card__button" href="index.html#popular">Подробнее</a>
+          </article>
+
+          <article class="product-card">
+            <h3 class="product-card__title">Клавиатура</h3>
+            <p class="product-card__text">Полноразмерная USB-клавиатура с цифровым блоком для набора текста.</p>
+            <p class="product-card__price">Цена: 1 500 руб.</p>
+            <a class="button product-card__button" href="index.html#popular">Подробнее</a>
+          </article>
+
+          <article class="product-card">
+            <h3 class="product-card__title">Наушники с микрофоном</h3>
+            <p class="product-card__text">Проводная гарнитура для онлайн-занятий, общения и прослушивания музыки.</p>
+            <p class="product-card__price">Цена: 2 000 руб.</p>
+            <a class="button product-card__button" href="index.html#popular">Подробнее</a>
+          </article>
+        </div>
+      </section>
     </section>
   </main>
 
