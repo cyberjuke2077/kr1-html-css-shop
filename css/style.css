@@ -48,6 +48,12 @@
 */
 html {
   scrollbar-gutter: stable;
+  scroll-behavior: smooth;
+}
+
+:target {
+  outline: 2px dashed var(--color-primary);
+  outline-offset: 4px;
 }
 
 /* Минимальный сброс отступов и наследуемые стили текста. */
@@ -177,6 +183,22 @@ textarea:focus-visible {
 
 .site-nav__link:hover {
   text-decoration: underline;
+}
+
+.breadcrumbs {
+  max-width: var(--container-width);
+  margin: 0 auto var(--space-md);
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+.breadcrumbs__link {
+  color: var(--color-primary);
+}
+
+.breadcrumbs__current::before {
+  content: " / ";
+  color: var(--color-muted);
 }
 
 /* Первый экран выделяется светлым фоном и внутренними отступами. */
