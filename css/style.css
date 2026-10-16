@@ -236,6 +236,17 @@ textarea:focus-visible {
   color: var(--color-muted);
 }
 
+/*
+  Разделитель перед второй ссылкой: Главная / Каталог / Товар.
+  inline-block не даёт подчёркиванию ссылки перейти на разделитель.
+*/
+.breadcrumbs__link + .breadcrumbs__link::before {
+  content: "/ ";
+  display: inline-block;
+  white-space: pre;
+  color: var(--color-muted);
+}
+
 /* Первый экран выделяется светлым фоном и внутренними отступами. */
 .hero {
   max-width: var(--container-width);
@@ -394,6 +405,108 @@ textarea:focus-visible {
   align-self: flex-start;
 }
 
+.product-card__category {
+  margin: 0;
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+/* Название товара ведёт на страницу товара. */
+.product-card__link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.product-card__link:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+/*
+  Страница товара: фото и описание в две колонки, таблица под ними.
+  auto-fit сам ставит описание под фото, когда двум колонкам не хватает места.
+*/
+.product-details {
+  max-width: var(--container-width);
+  margin: 0 auto var(--space-xl);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+/* width и height в HTML резервируют место под фото до его загрузки. */
+.product-details__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+}
+
+.product-details__info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+.product-details__category,
+.product-details__title,
+.product-details__description,
+.product-details__price,
+.product-details__stock {
+  margin: 0;
+}
+
+.product-details__category {
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+.product-details__title {
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+.product-details__price {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.product-details__stock {
+  color: var(--color-success);
+  font-weight: bold;
+}
+
+/* Таблица характеристик занимает всю ширину под фото и описанием. */
+.product-details__specs {
+  grid-column: 1 / -1;
+}
+
+.product-table {
+  width: 100%;
+  max-width: 720px;
+  border-collapse: collapse;
+}
+
+.product-table__caption {
+  margin-bottom: var(--space-sm);
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.product-table__cell {
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--color-border);
+  text-align: left;
+}
+
+/* Модификатор: ячейка в строке заголовков таблицы. */
+.product-table__cell--head {
+  background-color: var(--color-surface);
+}
+
 /* Вспомогательная информация выделена фоном и левой рамкой. */
 .aside-info {
   max-width: var(--container-width);
@@ -445,6 +558,11 @@ textarea:focus-visible {
 */
 body:has(.order-dialog[open]) {
   overflow: hidden;
+}
+
+/* На странице заявки форма не растягивается на всю ширину контейнера. */
+.order-form {
+  max-width: 560px;
 }
 
 /* Каждое поле формы получает нижний отступ. */
