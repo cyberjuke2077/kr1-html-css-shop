@@ -120,6 +120,7 @@
 
   <dialog class="order-dialog" id="order-dialog" aria-labelledby="order-dialog-title">
     <h2 class="order-dialog__title" id="order-dialog-title">Оформление заявки</h2>
+    <p class="order-dialog__product">Товар: <strong id="order-dialog-product"></strong></p>
 
     <form class="order-form" id="order-form" action="#" method="post" novalidate>
       <input id="selected-product" name="selected-product" type="hidden">
@@ -215,10 +216,13 @@
         <button class="button button--primary" type="submit">Отправить заявку</button>
       </div>
     </form>
-  </dialog>
 
-  <p class="success-message" id="success-message" hidden>
-    Форма успешно отправлена!
-  </p>
+    <div class="order-dialog__success" id="order-dialog-success" hidden>
+      <p class="success-message" id="success-message" tabindex="-1">
+        Заявка отправлена! Мы свяжемся с вами в течение рабочего дня.
+      </p>
+      <button class="button button--primary" type="button" id="order-dialog-done">Готово</button>
+    </div>
+  </dialog>
 </body>
 </html>
