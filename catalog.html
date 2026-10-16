@@ -8,14 +8,14 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header id="top">
-    <div class="site-header">
-      <a class="site-logo" href="index.html">ShopProject</a>
+  <header class="site-header" id="top">
+    <div class="site-header__inner">
+      <a class="site-header__logo" href="index.html">ShopProject</a>
 
       <nav class="site-nav" aria-label="Основная навигация">
         <ul class="site-nav__list">
           <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="catalog.html" aria-current="page">Каталог</a></li>
+          <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" href="catalog.html" aria-current="page">Каталог</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="index.html#advantages">Преимущества</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="index.html#popular">Популярные товары</a></li>
@@ -40,8 +40,8 @@
     </section>
 
     <section class="catalog-layout" aria-label="Каталог с фильтрами">
-      <aside class="catalog-filters">
-        <h2 class="section__title">Фильтры</h2>
+      <aside class="catalog-filters catalog-layout__filters">
+        <h2 class="catalog-filters__title">Фильтры</h2>
         <form class="filters-form" action="#" method="get">
           <fieldset class="filters-form__group">
             <legend class="filters-form__legend">Категория</legend>
@@ -67,40 +67,40 @@
             <input class="filters-form__input" id="price-to" name="price-to" type="number" min="0" placeholder="5000">
           </fieldset>
 
-          <button class="button" type="submit">Применить</button>
+          <button class="button button--primary" type="submit">Применить</button>
         </form>
       </aside>
 
-      <section class="catalog-products">
-        <h2 class="section__title">Список товаров</h2>
+      <section class="catalog-layout__products">
+        <h2 class="catalog-layout__title">Список товаров</h2>
         <div class="products-grid">
           <article class="product-card">
             <h3 class="product-card__title">Проводная мышь</h3>
-            <p class="product-card__text">Компактная USB-мышь для работы и учёбы за компьютером.</p>
+            <p class="product-card__description">Компактная USB-мышь для работы и учёбы за компьютером.</p>
             <p class="product-card__price">Цена: 1 000 руб.</p>
-            <a class="button product-card__button" href="index.html#popular">Подробнее</a>
+            <a class="button button--primary product-card__button" href="index.html#popular">Подробнее</a>
           </article>
 
           <article class="product-card">
             <h3 class="product-card__title">Клавиатура</h3>
-            <p class="product-card__text">Полноразмерная USB-клавиатура с цифровым блоком для набора текста.</p>
+            <p class="product-card__description">Полноразмерная USB-клавиатура с цифровым блоком для набора текста.</p>
             <p class="product-card__price">Цена: 1 500 руб.</p>
-            <a class="button product-card__button" href="index.html#popular">Подробнее</a>
+            <a class="button button--primary product-card__button" href="index.html#popular">Подробнее</a>
           </article>
 
           <article class="product-card">
             <h3 class="product-card__title">Наушники с микрофоном</h3>
-            <p class="product-card__text">Проводная гарнитура для онлайн-занятий, общения и прослушивания музыки.</p>
+            <p class="product-card__description">Проводная гарнитура для онлайн-занятий, общения и прослушивания музыки.</p>
             <p class="product-card__price">Цена: 2 000 руб.</p>
-            <a class="button product-card__button" href="index.html#popular">Подробнее</a>
+            <a class="button button--primary product-card__button" href="index.html#popular">Подробнее</a>
           </article>
         </div>
       </section>
     </section>
   </main>
 
-  <footer id="contacts">
-    <div class="site-footer">
+  <footer class="site-footer" id="contacts">
+    <div class="site-footer__inner">
       <p>&copy; 2026 Учебный проект</p>
       <p>Дисциплина: Фронтенд и бэкенд разработка</p>
       <p>Выполнил: Белячков Артём</p>
