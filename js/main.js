@@ -11,11 +11,36 @@ const successMessage = document.getElementById('success-message');
 // Получаем блок с сообщением об успехе внутри модального окна.
 const dialogSuccess = document.getElementById('order-dialog-success');
 
-// Убираем признаки ошибок у всех полей формы.
+// Убираем признаки и тексты ошибок у всех полей формы.
 function clearErrors() {
   orderForm.querySelectorAll('[aria-invalid]').forEach((field) => {
     field.removeAttribute('aria-invalid');
   });
+
+  orderForm.querySelectorAll('.order-form__error').forEach((error) => {
+    error.textContent = '';
+  });
+}
+
+// Проверяем одно поле: подсвечиваем его и пишем текст ошибки под ним.
+// Возвращаем true, если поле заполнено верно.
+function validateField(field) {
+  const error = document.getElementById(`${field.id}-error`);
+  const isValid = field.checkValidity();
+
+  if (isValid) {
+    field.removeAttribute('aria-invalid');
+  } else {
+    field.setAttribute('aria-invalid', 'true');
+  }
+
+  // Текст ошибки связан с полем через aria-describedby,
+  // поэтому скринридер прочитает его вместе с названием поля.
+  if (error) {
+    error.textContent = isValid ? '' : field.dataset.error;
+  }
+
+  return isValid;
 }
 
 // Проверяем, был ли клик внутри окна, а не по затемнённому фону вокруг него.
@@ -89,29 +114,32 @@ orderForm.addEventListener('submit', (event) => {
   // потому что backend пока не подключён.
   event.preventDefault();
 
-  // Сбрасываем предыдущие признаки ошибок.
-  clearErrors();
+  // Проверяем встроенные HTML-ограничения у каждого поля.
+  const fields = Array.from(orderForm.elements).filter((element) => element.willValidate);
+  const invalidFields = fields.filter((field) => !validateField(field));
 
-  // Проверяем встроенные HTML-ограничения формы.
-  if (!orderForm.checkValidity()) {
-    Array.from(orderForm.elements).forEach((element) => {
-      if (element.willValidate && !element.checkValidity()) {
-        element.setAttribute('aria-invalid', 'true');
-      }
-    });
-
-    // Показываем стандартные сообщения браузера.
-    orderForm.reportValidity();
+  if (invalidFields.length > 0) {
+    // Переводим фокус на первое поле с ошибкой: скринридер прочитает
+    // его название и текст ошибки.
+    invalidFields[0].focus();
     return;
   }
 
   // Очищаем форму.
   orderForm.reset();
 
-  // Показываем сообщение об успешной отправке.
+  // Показываем сообщение об успешной отправке и переводим на него фокус.
   if (orderDialog) {
     showDialogSuccess();
   } else {
     successMessage.hidden = false;
+    successMessage.focus();
+  }
+});
+
+// Когда пользователь исправляет поле с ошибкой, ошибка сразу исчезает.
+orderForm.addEventListener('input', (event) => {
+  if (event.target.hasAttribute('aria-invalid')) {
+    validateField(event.target);
   }
 });
