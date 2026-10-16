@@ -66,15 +66,8 @@ body {
 }
 
 /* Отступы отделяют содержимое от краёв окна браузера. */
-header,
-main,
-footer {
+main {
   padding: var(--space-lg);
-}
-
-header,
-footer {
-  background-color: var(--color-surface);
 }
 
 /* ===============================
@@ -99,12 +92,13 @@ textarea:focus-visible {
   outline-offset: 3px;
 }
 
-/* Единое оформление ссылок-кнопок и настоящих кнопок. */
+/*
+  Кнопка - самостоятельный БЭМ-блок для ссылок-кнопок и настоящих кнопок.
+  Базовый класс задаёт форму, вариант оформления - модификатор.
+*/
 .button {
   display: inline-block;
   padding: var(--space-sm) var(--space-md);
-  color: var(--color-white);
-  background-color: var(--color-primary);
   text-decoration: none;
   border: none;
   border-radius: var(--radius-sm);
@@ -112,13 +106,31 @@ textarea:focus-visible {
   cursor: pointer;
 }
 
+/* Модификатор: основная кнопка. */
+.button--primary {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+}
+
 /*
   color повторяется специально: у ссылки-кнопки правило a:hover
-  сильнее, чем .button, и без этого текст сливается с фоном.
+  сильнее, чем .button--primary, и без этого текст сливается с фоном.
 */
-.button:hover {
+.button--primary:hover {
   color: var(--color-white);
   background-color: var(--color-primary-dark);
+}
+
+/* Модификатор: второстепенная кнопка с рамкой. */
+.button--secondary {
+  color: var(--color-primary);
+  background-color: transparent;
+  border: 1px solid var(--color-primary);
+}
+
+.button--secondary:hover {
+  color: var(--color-white);
+  background-color: var(--color-primary);
 }
 
 /* Момент нажатия: кнопка немного уменьшается. */
@@ -130,8 +142,11 @@ textarea:focus-visible {
 .button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
-  background-color: var(--color-primary);
   transform: none;
+}
+
+.button--primary:disabled {
+  background-color: var(--color-primary);
 }
 
 /* ===============================
@@ -142,29 +157,37 @@ textarea:focus-visible {
   Классы названы по БЭМ: блок (.product-card),
   элемент блока (.product-card__title), модификатор (.product-card--out-of-stock).
   Стили задаются через классы, а не через вложенные теги.
+  id остаются только для якорных ссылок и JavaScript.
 */
 
-/* Общая ширина и центрирование содержимого шапки и подвала. */
+/* Шапка и подвал: фон на всю ширину окна и отступы от его краёв. */
 .site-header,
 .site-footer {
+  padding: var(--space-lg);
+  background-color: var(--color-surface);
+}
+
+/* Общая ширина и центрирование содержимого шапки и подвала. */
+.site-header__inner,
+.site-footer__inner {
   max-width: var(--container-width);
   margin: 0 auto;
 }
 
-.site-logo {
-  font-size: 20px;
-  font-weight: bold;
-  text-decoration: none;
-  color: var(--color-text);
-}
-
 /* Flexbox размещает логотип и меню в строку с переносом при нехватке места. */
-.site-header {
+.site-header__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: var(--space-md);
+}
+
+.site-header__logo {
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  color: var(--color-text);
 }
 
 .site-nav__list {
@@ -187,6 +210,12 @@ textarea:focus-visible {
 }
 
 .site-nav__link:hover {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+}
+
+/* Модификатор: пункт меню текущей страницы. */
+.site-nav__link--active {
   color: var(--color-white);
   background-color: var(--color-primary);
 }
@@ -228,6 +257,8 @@ textarea:focus-visible {
 }
 
 .section__title,
+.catalog-filters__title,
+.catalog-layout__title,
 .aside-info__title {
   margin-top: 0;
 }
@@ -257,16 +288,23 @@ textarea:focus-visible {
   gap: var(--space-lg);
 }
 
-.catalog-filters {
+/*
+  Элементы макета занимают свои области сетки. Фильтры - отдельный блок
+  catalog-filters, а место в сетке ему даёт элемент catalog-layout__filters.
+*/
+.catalog-layout__filters {
   grid-area: filters;
+}
+
+.catalog-layout__products {
+  grid-area: products;
+}
+
+.catalog-filters {
   padding: var(--space-md);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   background-color: var(--color-surface);
-}
-
-.catalog-products {
-  grid-area: products;
 }
 
 .filters-form {
@@ -342,7 +380,7 @@ textarea:focus-visible {
 }
 
 .product-card__title,
-.product-card__text {
+.product-card__description {
   margin: 0;
 }
 
@@ -397,6 +435,10 @@ textarea:focus-visible {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+.order-dialog__title {
+  margin-top: 0;
+}
+
 /*
   Пока модальное окно открыто (у dialog есть атрибут open),
   страница под ним не прокручивается.
@@ -405,17 +447,19 @@ body:has(.order-dialog[open]) {
   overflow: hidden;
 }
 
-/* Каждый блок формы получает нижний отступ. */
-.form-field {
+/* Каждое поле формы получает нижний отступ. */
+.order-form__field {
   margin-bottom: var(--space-md);
 }
 
-.form-field__label {
+.order-form__label {
   display: block;
   margin-bottom: var(--space-xs);
 }
 
-.form-field__control {
+.order-form__input,
+.order-form__select,
+.order-form__textarea {
   width: 100%;
   padding: 10px 12px;
   border: 1px solid var(--color-border);
@@ -424,18 +468,22 @@ body:has(.order-dialog[open]) {
 }
 
 /* Подсказка под полем телефона. */
-.form-field__hint {
+.order-form__hint {
   display: block;
   margin-top: var(--space-xs);
   color: var(--color-muted);
 }
 
-.form-field__control:hover {
+.order-form__input:hover,
+.order-form__select:hover,
+.order-form__textarea:hover {
   border-color: var(--color-primary);
 }
 
 /* Поле в фокусе (после щелчка мышью или клавиши Tab) выделяется фоном. */
-.form-field__control:focus {
+.order-form__input:focus,
+.order-form__select:focus,
+.order-form__textarea:focus {
   background-color: var(--color-surface-accent);
 }
 
@@ -444,12 +492,14 @@ body:has(.order-dialog[open]) {
   Селектор такой же силы, как у :hover, и стоит после него,
   поэтому красная рамка не перебивается обычной и синей.
 */
-.form-field__control[aria-invalid="true"] {
+.order-form__input[aria-invalid="true"],
+.order-form__select[aria-invalid="true"],
+.order-form__textarea[aria-invalid="true"] {
   border-color: var(--color-danger);
 }
 
 /* Кнопки формы. */
-.form-actions {
+.order-form__actions {
   display: flex;
   gap: var(--space-md);
   margin-top: var(--space-lg);
