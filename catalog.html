@@ -16,6 +16,7 @@
         <ul class="site-nav__list">
           <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
           <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" href="catalog.html" aria-current="page">Каталог</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="order.html">Заявка</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="index.html#advantages">Преимущества</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="index.html#popular">Популярные товары</a></li>
@@ -50,12 +51,20 @@
               Все товары
             </label>
             <label class="filters-form__label">
-              <input type="checkbox" name="category" value="popular">
-              Популярные
+              <input type="checkbox" name="category" value="mice">
+              Мыши
             </label>
             <label class="filters-form__label">
-              <input type="checkbox" name="category" value="new">
-              Новинки
+              <input type="checkbox" name="category" value="keyboards">
+              Клавиатуры
+            </label>
+            <label class="filters-form__label">
+              <input type="checkbox" name="category" value="headsets">
+              Гарнитуры
+            </label>
+            <label class="filters-form__label">
+              <input type="checkbox" name="category" value="webcams">
+              Веб-камеры
             </label>
           </fieldset>
 
@@ -75,24 +84,38 @@
         <h2 class="catalog-layout__title">Список товаров</h2>
         <div class="products-grid">
           <article class="product-card">
+            <p class="product-card__category">Мыши</p>
             <h3 class="product-card__title">Проводная мышь</h3>
             <p class="product-card__description">Компактная USB-мышь для работы и учёбы за компьютером.</p>
             <p class="product-card__price">Цена: 1 000 руб.</p>
-            <a class="button button--primary product-card__button" href="index.html#popular">Подробнее</a>
+            <a class="button button--primary product-card__button" href="product.html">Подробнее</a>
           </article>
 
-          <article class="product-card">
+          <article class="product-card product-card--new">
+            <span class="product-card__badge">Новинка</span>
+            <p class="product-card__category">Клавиатуры</p>
             <h3 class="product-card__title">Клавиатура</h3>
             <p class="product-card__description">Полноразмерная USB-клавиатура с цифровым блоком для набора текста.</p>
             <p class="product-card__price">Цена: 1 500 руб.</p>
-            <a class="button button--primary product-card__button" href="index.html#popular">Подробнее</a>
+            <a class="button button--primary product-card__button" href="product.html">Подробнее</a>
           </article>
 
-          <article class="product-card">
+          <article class="product-card product-card--discount">
+            <span class="product-card__badge">Скидка</span>
+            <p class="product-card__category">Гарнитуры</p>
             <h3 class="product-card__title">Наушники с микрофоном</h3>
             <p class="product-card__description">Проводная гарнитура для онлайн-занятий, общения и прослушивания музыки.</p>
-            <p class="product-card__price">Цена: 2 000 руб.</p>
-            <a class="button button--primary product-card__button" href="index.html#popular">Подробнее</a>
+            <p class="product-card__price">Цена: 1 600 руб. <s class="product-card__old-price">2 000 руб.</s></p>
+            <a class="button button--primary product-card__button" href="product.html">Подробнее</a>
+          </article>
+
+          <article class="product-card product-card--out-of-stock">
+            <span class="product-card__badge">Нет в наличии</span>
+            <p class="product-card__category">Веб-камеры</p>
+            <h3 class="product-card__title">Веб-камера</h3>
+            <p class="product-card__description">Full HD веб-камера для видеозвонков и онлайн-занятий.</p>
+            <p class="product-card__price">Цена: 2 500 руб.</p>
+            <a class="button button--primary product-card__button" href="product.html">Подробнее</a>
           </article>
         </div>
       </section>
