@@ -87,7 +87,8 @@ a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 select:focus-visible,
-textarea:focus-visible {
+textarea:focus-visible,
+summary:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 3px;
 }
@@ -528,6 +529,44 @@ textarea:focus-visible {
 /* Модификатор: ячейка в строке заголовков таблицы. */
 .product-table__cell--head {
   background-color: var(--color-surface);
+}
+
+/*
+  Частые вопросы: details и summary раскрывают ответ без JavaScript,
+  с клавиатуры (Tab, Enter, пробел) и с правильной ролью для скринридера.
+*/
+.faq {
+  display: grid;
+  gap: var(--space-sm);
+  max-width: 720px;
+}
+
+.faq__item {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg);
+}
+
+/* Атрибут open появляется у раскрытого вопроса. */
+.faq__item[open] {
+  border-color: var(--color-primary);
+}
+
+/* Скругление нужно, чтобы рамка фокуса повторяла форму вопроса. */
+.faq__question {
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.faq__question:hover {
+  color: var(--color-primary);
+}
+
+.faq__answer {
+  margin: 0;
+  padding: 0 var(--space-md) var(--space-md);
 }
 
 /* Вспомогательная информация выделена фоном и левой рамкой. */
