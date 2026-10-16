@@ -390,6 +390,29 @@ textarea:focus-visible {
   background-color: var(--color-surface);
 }
 
+/*
+  Модификаторы блока меняют его элементы: один класс на карточке
+  задаёт и цвет бейджа, и вид цены.
+*/
+.product-card--new .product-card__badge {
+  background-color: var(--color-primary);
+}
+
+.product-card--discount .product-card__badge {
+  background-color: var(--color-danger);
+}
+
+.product-card--discount .product-card__price {
+  color: var(--color-danger);
+}
+
+/* Старая цена товара со скидкой: <s> зачёркивает её по смыслу, а не только визуально. */
+.product-card__old-price {
+  margin-left: var(--space-xs);
+  font-weight: normal;
+  color: var(--color-muted);
+}
+
 .product-card__title,
 .product-card__description {
   margin: 0;
