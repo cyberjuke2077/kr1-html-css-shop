@@ -524,6 +524,19 @@ summary:focus-visible {
   font-weight: bold;
 }
 
+/* Модификатор: товара нет в наличии. */
+.product-details__stock--out {
+  color: var(--color-muted);
+}
+
+/* Старая цена товара со скидкой. */
+.product-details__old-price {
+  margin-left: var(--space-sm);
+  font-size: 18px;
+  font-weight: normal;
+  color: var(--color-muted);
+}
+
 /* Таблица характеристик занимает всю ширину под фото и описанием. */
 .product-details__specs {
   grid-column: 1 / -1;
