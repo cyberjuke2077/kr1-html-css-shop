@@ -451,6 +451,19 @@ summary:focus-visible {
   align-self: flex-start;
 }
 
+/*
+  Фото товара в карточке каталога. В HTML стоит уменьшенная копия 480×360,
+  а aspect-ratio и object-fit держат у всех карточек одинаковую пропорцию 4:3.
+*/
+.product-card__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+
 .product-card__category {
   margin: 0;
   font-size: 14px;
